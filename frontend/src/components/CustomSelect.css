@@ -1,0 +1,164 @@
+/* 自定义下拉组件样式 */
+.custom-select {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-select-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  transition: all 0.2s ease;
+  min-height: 23px;
+  min-width: 120px;
+}
+
+.custom-select-trigger:hover {
+  border-color: #cbd5e1;
+  background-color: #f8fafc;
+}
+
+.custom-select-trigger:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  background-color: #f8fafc;
+}
+
+.custom-select-arrow {
+  font-size: 10px;
+  color: #6b7280;
+  transition: transform 0.2s ease;
+  user-select: none;
+  margin-left: 8px;
+}
+
+.custom-select-arrow.open {
+  transform: rotate(180deg);
+}
+
+.custom-select-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 5000;
+  max-height: 200px;
+  overflow-y: auto;
+  min-width: max-content;
+  width: max-content;
+}
+
+.custom-select-option {
+  padding: 8px 8px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #374151;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid #f1f5f9;
+  white-space: nowrap;
+}
+
+.custom-select-option:last-child {
+  border-bottom: none;
+  border-radius: 0 0 6px 6px;
+}
+
+.custom-select-option:hover {
+  background: #f8fafc;
+  color: #2563eb;
+}
+
+.custom-select-option.selected {
+  background: #2563eb;
+  color: white;
+}
+
+.custom-select-option.selected:hover {
+  background: #1d4ed8;
+}
+
+/* 夜间模式 */
+body.dark-mode .custom-select-trigger {
+  background: #334155;
+  border-color: #475569;
+  color: #e2e8f0;
+}
+
+body.dark-mode .custom-select-trigger:hover {
+  background: #475569;
+  border-color: #64748b;
+}
+
+body.dark-mode .custom-select-trigger:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  background: #475569;
+}
+
+body.dark-mode .custom-select-arrow {
+  color: #94a3b8;
+}
+
+body.dark-mode .custom-select-options {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+body.dark-mode .custom-select-option {
+  color: #e2e8f0;
+  border-bottom-color: #334155;
+}
+
+body.dark-mode .custom-select-option:hover {
+  background: #334155;
+  color: #3b82f6;
+}
+
+body.dark-mode .custom-select-option.selected {
+  background: #3b82f6;
+  color: white;
+}
+
+body.dark-mode .custom-select-option.selected:hover {
+  background: #2563eb;
+}
+
+/* Portal下拉框样式 */
+.portal-dropdown {
+  position: fixed !important;
+  z-index: 99999 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+}
+
+body.dark-mode .portal-dropdown {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* 评分选择器特殊样式 */
+.grade-select .custom-select-trigger {
+  min-width: 60px;
+  width: 60px;
+  padding: 8px 10px;
+}
+
+.grade-select .custom-select-options {
+  min-width: 60px;
+}
+
+.grade-select .custom-select-option {
+  padding: 8px 6px;
+  text-align: center;
+}

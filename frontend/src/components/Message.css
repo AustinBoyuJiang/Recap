@@ -1,0 +1,89 @@
+.message {
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.user-message {
+  background: #f8fafc;
+}
+
+.ai-message {
+  background: white;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.message-content {
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.message-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-message .message-avatar {
+  background: #7c3aed;
+  color: white;
+}
+
+.ai-message .message-avatar {
+  background: #2563eb;
+  color: white;
+}
+
+.message-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.message-text {
+  color: #1e293b;
+  line-height: 1.6;
+  font-size: 16px;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.message-time {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+/* 夜间模式 */
+body.dark-mode .message {
+  color: #e2e8f0;
+}
+
+body.dark-mode .user-message {
+  background: #1e293b;
+}
+
+body.dark-mode .ai-message {
+  background: #0f172a;
+  border-top-color: #334155;
+  border-bottom-color: #334155;
+}
+
+body.dark-mode .message-text {
+  color: #e2e8f0;
+}
+
+body.dark-mode .message-time {
+  color: #94a3b8;
+}

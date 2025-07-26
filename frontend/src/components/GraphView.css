@@ -1,0 +1,363 @@
+/* GraphView 悬浮窗口样式 */
+.graph-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    backdrop-filter: blur(4px);
+}
+
+.graph-modal {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    width: 90vw;
+    height: 80vh;
+    max-width: 1200px;
+    overflow: hidden;
+    animation: graphModalSlideIn 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes graphModalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.graph-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    border-bottom: 1px solid #e2e8f0;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    gap: 20px;
+}
+
+.graph-modal-title {
+    font-size: 20px;
+    color: #1e40af;
+    margin: 0;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.graph-modal-controls {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.graph-modal-close {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #64748b;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.graph-modal-close:hover {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+
+.graph-modal-content {
+    flex: 1;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+}
+
+.graph-canvas-container {
+    flex: 1;
+    position: relative;
+    background: #f8fafc;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.graph-node-detail {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 350px;
+    height: 100%;
+    background: white;
+    border-left: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 100;
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.1);
+    transform: translateX(0);
+    animation: slideInFromRight 0.3s ease-out;
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.node-detail-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #f8fafc;
+}
+
+.node-detail-header h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #1e40af;
+    font-weight: 600;
+}
+
+.node-detail-close {
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #64748b;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.node-detail-close:hover {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+
+.node-detail-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.node-detail-content p {
+    margin: 0 0 16px 0;
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.5;
+}
+
+.node-detail-content h4 {
+    margin: 20px 0 12px 0;
+    font-size: 16px;
+    color: #1e40af;
+    font-weight: 600;
+}
+
+.node-detail-content h4:first-child {
+    margin-top: 0;
+}
+
+.node-summary ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.node-summary li {
+    margin-bottom: 8px;
+    padding: 8px 12px;
+    background: #f8fafc;
+    border-radius: 6px;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #475569;
+    border-left: 3px solid #e2e8f0;
+}
+
+.node-detail-content pre {
+    background: #f1f5f9;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    line-height: 1.4;
+    color: #334155;
+    border: 1px solid #e2e8f0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* 夜间模式 */
+body.dark-mode .graph-layout {
+    background: #0f172a;
+}
+
+body.dark-mode .graph-left {
+    background: #0f172a;
+}
+
+/* 夜间模式 */
+body.dark-mode .graph-modal {
+    background: #1e293b;
+    color: #e2e8f0;
+    border: 2px solid #475569;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .graph-modal-header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border-bottom-color: #334155;
+}
+
+body.dark-mode .graph-modal-title {
+    color: #ffffff;
+}
+
+body.dark-mode .graph-modal-close {
+    color: #94a3b8;
+}
+
+body.dark-mode .graph-modal-close:hover {
+    background: #334155;
+    color: #e2e8f0;
+}
+
+body.dark-mode .graph-canvas-container {
+    background: #0f172a;
+}
+
+body.dark-mode .graph-node-detail {
+    background: #1e293b;
+    border-left-color: #334155;
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .graph-canvas {
+    background: #0f172a;
+    border-color: #475569;
+    border-width: 2px;
+}
+
+body.dark-mode .node-detail-header {
+    background: #0f172a;
+    border-bottom-color: #334155;
+}
+
+body.dark-mode .node-detail-header h3 {
+    color: #3b82f6;
+}
+
+body.dark-mode .node-detail-close {
+    color: #94a3b8;
+}
+
+body.dark-mode .node-detail-close:hover {
+    background: #334155;
+    color: #e2e8f0;
+}
+
+body.dark-mode .node-detail-content {
+    color: #e2e8f0;
+}
+
+body.dark-mode .node-detail-content h4 {
+    color: #3b82f6;
+}
+
+body.dark-mode .node-detail-content p {
+    color: #cbd5e1;
+}
+
+body.dark-mode .node-summary li {
+    background: #0f172a;
+    color: #cbd5e1;
+    border-left-color: #334155;
+}
+
+.node-data-container {
+    position: relative;
+}
+
+.copy-data-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(241, 245, 249, 0.9);
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    padding: 4px 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s ease;
+    color: #64748b;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+}
+
+.copy-data-btn:hover {
+    background: rgba(226, 232, 240, 0.95);
+    border-color: #cbd5e1;
+    color: #374151;
+    transform: scale(1.05);
+}
+
+body.dark-mode .copy-data-btn {
+    background: rgba(51, 65, 85, 0.9);
+    border-color: #475569;
+    color: #94a3b8;
+}
+
+body.dark-mode .copy-data-btn:hover {
+    background: rgba(71, 85, 105, 0.95);
+    border-color: #64748b;
+    color: #e2e8f0;
+}
+
+body.dark-mode .node-detail-content pre {
+    background: #0f172a;
+    color: #e2e8f0;
+    border-color: #334155;
+}/* 图谱加载样
+式 */
+.graph-loading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #64748b;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.graph-loading span {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* 夜间模式 */
+body.dark-mode .graph-loading {
+    color: #94a3b8;
+}

@@ -1,0 +1,123 @@
+/* GraphControls 控制面板样式 */
+.graph-controls {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 10;
+}
+
+.graph-controls input[type="text"],
+.graph-controls select {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 2px solid #e2e8f0;
+    font-size: 14px;
+    background: white;
+    color: #1e293b;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.graph-controls input[type="text"]:focus,
+.graph-controls select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.graph-controls button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    background: #2563eb;
+    color: white;
+    font-weight: 600;
+    font-family: inherit;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+}
+
+.graph-controls button:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+}
+
+.graph-clear {
+    background: #dc2626 !important;
+    color: white !important;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: inherit;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 2px 4px rgba(220, 38, 38, 0.2);
+}
+
+.graph-clear:hover {
+    background: #b91c1c !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(220, 38, 38, 0.3);
+}
+
+.graph-controls input,
+.graph-controls select {
+    background: white;
+    color: #1e293b;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    padding: 8px 12px;
+    font-family: inherit;
+}
+
+.graph-controls input {
+    height: 40px;
+}
+
+/* 在模态窗口标题栏中的控件样式 */
+.graph-modal-controls .graph-controls {
+    position: static;
+    gap: 8px;
+}
+
+.graph-modal-controls .graph-controls input[type="text"] {
+    width: 200px;
+    padding: 6px 10px;
+    font-size: 13px;
+    height: auto;
+}
+
+.graph-modal-controls .graph-controls button {
+    padding: 6px 12px;
+    font-size: 13px;
+    height: 32px;
+}
+
+.graph-modal-controls .graph-clear {
+    padding: 6px 12px !important;
+    font-size: 13px !important;
+    height: 32px !important;
+}
+
+.graph-modal-controls .custom-select-trigger {
+    height: 32px;
+    min-height: 32px;
+    padding: 6px 10px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.graph-modal-controls .custom-select {
+    position: relative;
+}

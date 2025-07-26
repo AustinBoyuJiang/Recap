@@ -1,0 +1,205 @@
+/* GraphCanvas 画布样式 */
+.graph-canvas {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+    border: 2px solid #e2e8f0;
+    border-top: none;
+    min-height: 400px;
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-repeat: repeat;
+}
+
+.graph-viewport {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-origin: 0 0;
+}
+
+.graph-svg {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+    overflow: visible;
+    width: 100%;
+    height: 100%;
+}
+
+.graph-svg line {
+    stroke: #cbd5e1;
+    stroke-width: 2;
+}
+
+.graph-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.graph-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.graph-node {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    text-align: center;
+    padding: 4px;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    background: #2563eb;
+    border: none;
+}
+
+    .graph-node:hover {
+        transform: scale(1.08);
+        background: #1d4ed8;
+    }
+
+/* 缩放控制按钮样式 */
+.zoom-controls {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 8px 12px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    border: 2px solid #e2e8f0;
+    transition: right 0.3s ease;
+}
+
+.zoom-controls.with-detail-panel {
+    right: 365px; /* 350px面板宽度 + 15px间距 */
+}
+
+.zoom-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    font-family: inherit;
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+}
+
+.zoom-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+}
+
+.zoom-btn:active {
+    transform: scale(0.95);
+}
+
+.reset-btn {
+    background: #64748b;
+    color: white;
+    font-size: 12px;
+    width: auto;
+    padding: 0 8px;
+    box-shadow: 0 2px 4px rgba(100, 116, 139, 0.2);
+}
+
+.reset-btn:hover {
+    background: #475569;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(100, 116, 139, 0.3);
+}
+
+.zoom-level {
+    font-size: 12px;
+    color: #1e293b;
+    font-weight: 600;
+    min-width: 35px;
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.canvas-layer-labels-inside {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    font-weight: 500;
+    line-height: 1.6;
+    color: #1e293b;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+    z-index: 100;
+    border: 2px solid #e2e8f0;
+    transition: right 0.3s ease;
+}
+
+.canvas-layer-labels-inside.with-detail-panel {
+    right: 370px; /* 350px面板宽度 + 20px间距 */
+}
+
+/* 夜间模式 */
+body.dark-mode .graph-canvas {
+    background: #0f172a;
+    border-color: #475569;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-repeat: repeat;
+}
+
+/* 夜间模式viewport不需要背景 */
+
+body.dark-mode .zoom-controls {
+    background: rgba(30, 41, 59, 0.95);
+    border-color: #334155;
+}
+
+body.dark-mode .zoom-level {
+    color: #e2e8f0;
+}
+
+body.dark-mode .canvas-layer-labels-inside {
+    background: rgba(30, 41, 59, 0.95);
+    border-color: #334155;
+    color: #e2e8f0;
+}
