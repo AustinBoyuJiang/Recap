@@ -1,5 +1,6 @@
+Check out the live deployment of the project on the [Recap website](http://recap.austinjiang.com) to see it in action!
 
-# Recap: Memory Planning System
+# Recap: A Memory Planning System
 
 A full-stack AI-powered memory planning system that simulates how the human brain structures and retains knowledge — from sentences to letters — across any subject or language.
 
