@@ -52,7 +52,7 @@ async def clear_chat_history():
     agent.history = [msg for msg in agent.history if msg["role"] == "system"]
     return {"message": "Chat history cleared"}
 
-@app.websocket("/ws")
+@app.websocket("/ws/")
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     clients.add(websocket)
