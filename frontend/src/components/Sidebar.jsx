@@ -27,7 +27,7 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
   React.useEffect(() => {
     const loadDocuments = async () => {
       try {
-        const response = await fetch('http://localhost:8000/documents');
+          const response = await fetch('https://recap.austinjiang.com/documents');
         if (response.ok) {
           const data = await response.json();
           // 确保所有加载的文档都有available属性
@@ -156,7 +156,7 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
   // 保存文档到后端
   const saveDocumentToBackend = async (document) => {
     try {
-      const response = await fetch('http://localhost:8000/documents', {
+        const response = await fetch('https://recap.austinjiang.com/documents', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -208,7 +208,7 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
       setIsLoading(true);
       
       try {
-        const response = await fetch('http://localhost:8000/scrape-url', {
+          const response = await fetch('https://recap.austinjiang.com/scrape-url', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -263,7 +263,7 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
   // 删除文档
   const handleDeleteDocument = async (docId) => {
     try {
-      const response = await fetch(`http://localhost:8000/documents/${docId}`, {
+        const response = await fetch(`https://recap.austinjiang.com/documents/${docId}`, {
         method: 'DELETE',
       });
 

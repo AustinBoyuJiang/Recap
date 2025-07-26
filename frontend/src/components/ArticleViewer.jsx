@@ -21,7 +21,7 @@ const ArticleViewer = ({ articleData, onClose }) => {
 
         setIsGeneratingSummary(true);
         try {
-            const response = await fetch('http://localhost:8000/generate-summary', {
+            const response = await fetch('https://recap.austinjiang.com/generate-summary', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
