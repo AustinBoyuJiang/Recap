@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+websockets
+pydantic
+requests
+beautifulsoup4
+lxml
