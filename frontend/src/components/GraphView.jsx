@@ -36,7 +36,7 @@ const GraphView = ({ onClose, isArticleMode = false, articleData = null }) => {
     useEffect(() => {
         if (!isArticleMode) {
             // 建立WebSocket连接用于英语学习模式的实时更新
-            const ws = new WebSocket("ws://localhost:8000/ws");
+            const ws = new WebSocket("ws://recap.austinjiang.com/ws");
             
             ws.onmessage = (event) => {
                 const data = JSON.parse(event.data);
