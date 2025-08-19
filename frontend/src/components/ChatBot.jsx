@@ -12,7 +12,7 @@ const ChatBot = ({ selectedSubject }) => {
     const loadChatHistory = async () => {
         try {
             console.log('从后端加载聊天历史记录...');
-            const response = await fetch('https://recap.austinjiang.com/chat/history');
+            const response = await fetch('https://recap.apps.austinjiang.com/chat/history');
             
             if (response.ok) {
                 const data = await response.json();
@@ -43,7 +43,7 @@ const ChatBot = ({ selectedSubject }) => {
     const clearChatHistory = async () => {
         try {
             console.log('清除后端聊天记录...');
-            const response = await fetch('https://recap.austinjiang.com/chat/clear', {
+            const response = await fetch('https://recap.apps.austinjiang.com/chat/clear', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ const ChatBot = ({ selectedSubject }) => {
         try {
             console.log('测试连接到后端...');
 
-            const response = await fetch('https://recap.austinjiang.com/chat', {
+            const response = await fetch('https://recap.apps.austinjiang.com/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ const ChatBot = ({ selectedSubject }) => {
         try {
             console.log('AI开启对话...');
 
-            const response = await fetch('https://recap.austinjiang.com/chat', {
+            const response = await fetch('https://recap.apps.austinjiang.com/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -199,7 +199,7 @@ const ChatBot = ({ selectedSubject }) => {
                 controller.abort();
             }, 60000); // 60秒超时
 
-            const response = await fetch('https://recap.austinjiang.com/chat', {
+            const response = await fetch('https://recap.apps.austinjiang.com/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -242,7 +242,7 @@ const ChatBot = ({ selectedSubject }) => {
                 errorText = '请求超时（60秒），AI可能正在处理复杂问题，请稍后重试';
             } else if (error.message.includes('Failed to fetch')) {
                 errorText = `连接失败！可能的原因：
-1. 后端服务未启动（请确认 https://recap.austinjiang.com 运行中）
+1. 后端服务未启动（请确认 https://recap.apps.austinjiang.com 运行中）
 2. CORS配置问题（请在后端添加CORS中间件）
 3. 网络连接问题`;
             } else if (error.message.includes('HTTP错误: 500')) {

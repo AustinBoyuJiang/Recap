@@ -27,7 +27,7 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
   React.useEffect(() => {
     const loadDocuments = async () => {
       try {
-          const response = await fetch('https://recap.austinjiang.com/documents');
+        const response = await fetch('https://recap.apps.austinjiang.com/documents');
         if (response.ok) {
           const data = await response.json();
           // 确保所有加载的文档都有available属性
@@ -52,37 +52,37 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
       title: '核心学科',
       icon: '📚',
       subjects: [
-        { 
-          id: 'chinese', 
-          name: '语文', 
+        {
+          id: 'chinese',
+          name: '语文',
           icon: '📝',
           available: false,
           description: '语文阅读理解、写作指导'
         },
-        { 
-          id: 'math', 
-          name: '数学', 
+        {
+          id: 'math',
+          name: '数学',
           icon: '🔢',
           available: false,
           description: '数学解题、概念讲解'
         },
-        { 
-          id: 'physics', 
-          name: '物理', 
+        {
+          id: 'physics',
+          name: '物理',
           icon: '⚛️',
           available: false,
           description: '物理概念、实验分析'
         },
-        { 
-          id: 'chemistry', 
-          name: '化学', 
+        {
+          id: 'chemistry',
+          name: '化学',
           icon: '🧪',
           available: false,
           description: '化学反应、元素周期表'
         },
-        { 
-          id: 'biology', 
-          name: '生物', 
+        {
+          id: 'biology',
+          name: '生物',
           icon: '🧬',
           available: false,
           description: '生物知识、生命科学'
@@ -93,37 +93,37 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
       title: '外语学习',
       icon: '🌍',
       subjects: [
-        { 
-          id: 'english', 
-          name: '英语', 
+        {
+          id: 'english',
+          name: '英语',
           icon: '🇺🇸',
           available: true,
           description: '英语对话练习、语法学习'
         },
-        { 
-          id: 'french', 
-          name: '法语', 
+        {
+          id: 'french',
+          name: '法语',
           icon: '🇫🇷',
           available: false,
           description: '法语对话练习'
         },
-        { 
-          id: 'spanish', 
-          name: '西班牙语', 
+        {
+          id: 'spanish',
+          name: '西班牙语',
           icon: '🇪🇸',
           available: false,
           description: '西班牙语对话练习'
         },
-        { 
-          id: 'japanese', 
-          name: '日语', 
+        {
+          id: 'japanese',
+          name: '日语',
           icon: '🇯🇵',
           available: false,
           description: '日语对话练习'
         },
-        { 
-          id: 'german', 
-          name: '德语', 
+        {
+          id: 'german',
+          name: '德语',
           icon: '🇩🇪',
           available: false,
           description: '德语对话练习'
@@ -138,8 +138,8 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
   };
 
   const toggleCategory = (categoryId) => {
-    setExpandedCategories(prev => 
-      prev.includes(categoryId) 
+    setExpandedCategories(prev =>
+      prev.includes(categoryId)
         ? prev.filter(id => id !== categoryId)
         : [...prev, categoryId]
     );
@@ -156,7 +156,7 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
   // 保存文档到后端
   const saveDocumentToBackend = async (document) => {
     try {
-        const response = await fetch('https://recap.austinjiang.com/documents', {
+      const response = await fetch('https://recap.apps.austinjiang.com/documents', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -184,10 +184,10 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
         description: `PDF文档 - ${file.name}`,
         type: 'pdf'
       };
-      
+
       // 保存到后端
       await saveDocumentToBackend(newDocument);
-      
+
       // 更新前端状态
       setUploadedDocuments(prev => [...prev, newDocument]);
       setShowUploadForm(false);
@@ -203,12 +203,12 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
     event.preventDefault();
     const formData = new FormData(event.target);
     const url = formData.get('url');
-    
+
     if (url) {
       setIsLoading(true);
-      
+
       try {
-          const response = await fetch('https://recap.austinjiang.com/scrape-url', {
+        const response = await fetch('https://recap.apps.austinjiang.com/scrape-url', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -222,7 +222,7 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
         }
 
         const scrapedData = await response.json();
-        
+
         // 添加到文档列表，使用后端生成的智能标题
         const newDocument = {
           id: `url_${Date.now()}`,
@@ -234,23 +234,23 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
           url: url,
           articleData: scrapedData // 保存文章数据
         };
-        
+
         // 保存到后端
         await saveDocumentToBackend(newDocument);
-        
+
         // 更新前端状态
         setUploadedDocuments(prev => [...prev, newDocument]);
-        
+
         // 切换到主窗口显示内容，而不是悬浮窗
         if (onArticleView) {
           onArticleView(scrapedData);
         }
-        
+
         // 关闭表单
         setShowUploadForm(false);
         setShowUrlForm(false);
         event.target.reset();
-        
+
       } catch (error) {
         console.error('爬取网页失败:', error);
         alert(`爬取失败: ${error.message}`);
@@ -263,7 +263,7 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
   // 删除文档
   const handleDeleteDocument = async (docId) => {
     try {
-        const response = await fetch(`https://recap.austinjiang.com/documents/${docId}`, {
+      const response = await fetch(`https://recap.apps.austinjiang.com/documents/${docId}`, {
         method: 'DELETE',
       });
 
@@ -296,13 +296,13 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
             考前必备，因材施教；<br />记忆规划，对症下药！
           </div>
         </div>
-        
-        <button 
+
+        <button
           className="collapse-btn"
           onClick={() => setIsCollapsed(!isCollapsed)}
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-            <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
           </svg>
         </button>
       </div>
@@ -312,7 +312,7 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
           <div className="subjects-section">
             {Object.entries(subjects).map(([categoryId, category]) => (
               <div key={categoryId} className="subject-category">
-                <div 
+                <div
                   className="category-header"
                   onClick={() => toggleCategory(categoryId)}
                 >
@@ -322,30 +322,30 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
                   </div>
                   <div className={`expand-icon ${expandedCategories.includes(categoryId) ? 'expanded' : ''}`}>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                      <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
                 </div>
-                
+
                 {expandedCategories.includes(categoryId) && (
                   <div className="subjects-list">
                     {/* 如果是documents category，先显示上传按钮 */}
                     {categoryId === 'documents' && (
                       <div className="upload-section">
-                        <button 
+                        <button
                           className="upload-btn"
                           onClick={() => setShowUploadForm(!showUploadForm)}
                         >
                           <span className="upload-icon">➕</span>
                           <span>上传学习资料</span>
                         </button>
-                        
+
                         {showUploadForm && (
                           <div className="upload-form">
                             <div className="upload-options">
                               <label className="file-upload-btn">
-                                <input 
-                                  type="file" 
+                                <input
+                                  type="file"
                                   accept=".pdf"
                                   onChange={handleFileUpload}
                                   style={{ display: 'none' }}
@@ -353,28 +353,28 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
                                 <span className="upload-icon">📄</span>
                                 <span>上传PDF</span>
                               </label>
-                              
+
                               <div className="url-button-container">
-                                <button 
+                                <button
                                   className="url-link-btn"
                                   onClick={() => setShowUrlForm(!showUrlForm)}
                                 >
                                   <span className="upload-icon">🔗</span>
                                   <span>添加网址链接</span>
                                 </button>
-                                
+
                                 {showUrlForm && (
                                   <div className="url-form-dropdown">
                                     <form onSubmit={handleUrlSubmit}>
-                                      <input 
-                                        type="url" 
-                                        name="url" 
-                                        placeholder="输入网址链接" 
-                                        required 
+                                      <input
+                                        type="url"
+                                        name="url"
+                                        placeholder="输入网址链接"
+                                        required
                                         className="url-input"
                                       />
-                                      <button 
-                                        type="submit" 
+                                      <button
+                                        type="submit"
                                         className="url-submit-btn"
                                         disabled={isLoading}
                                       >
@@ -394,11 +394,11 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
                         )}
                       </div>
                     )}
-                    
+
                     {/* 渲染subjects */}
                     {category.subjects.map((subject) => (
-                      <div 
-                        key={subject.id} 
+                      <div
+                        key={subject.id}
                         className={`subject-item ${selectedSubject === subject.id ? 'active' : ''} ${!subject.available ? 'disabled' : ''}`}
                         onClick={() => {
                           if (subject.available) {
@@ -424,7 +424,7 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
                         {selectedSubject === subject.id && (
                           <div className="active-indicator">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                              <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                              <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
                           </div>
                         )}
@@ -433,7 +433,7 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
                         )}
                         {/* 为documents添加删除按钮 */}
                         {categoryId === 'documents' && (
-                          <button 
+                          <button
                             className="delete-doc-btn"
                             onClick={(e) => {
                               e.stopPropagation();
@@ -464,12 +464,12 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
                 </span>
                 <span className="expand-indicator">⌃</span>
               </div>
-              
+
               {/* 悬停时展开的选项 */}
               <div className="view-options">
                 {currentView === 'article' ? (
                   // 在文章视图时显示记忆图谱选项
-                  <button 
+                  <button
                     className="view-option"
                     onClick={() => onViewChange('graph')}
                   >
@@ -478,7 +478,7 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
                   </button>
                 ) : (
                   // 在聊天或图谱视图时显示切换选项
-                  <button 
+                  <button
                     className="view-option"
                     onClick={() => onViewChange(currentView === 'chat' ? 'graph' : 'chat')}
                   >
@@ -505,17 +505,17 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
                 </div>
                 <div className="user-menu-indicator">⋯</div>
               </div>
-              
+
               {/* 悬停时展开的用户菜单 */}
               <div className="user-menu">
-                <button 
+                <button
                   className="user-menu-item"
                   onClick={() => setShowSettings(true)}
                 >
                   <span className="menu-icon">⚙️</span>
                   <span className="menu-text">设置</span>
                 </button>
-                <button 
+                <button
                   className="user-menu-item"
                   onClick={() => console.log('登出功能暂未实现')}
                 >
@@ -527,33 +527,33 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
           </div>
         </>
       )}
-      
+
       {/* 设置弹窗 */}
       {showSettings && (
         <div className="settings-overlay" onClick={() => setShowSettings(false)}>
           <div className="settings-modal" onClick={(e) => e.stopPropagation()}>
             <div className="settings-header">
               <h2>设置</h2>
-              <button 
+              <button
                 className="close-btn"
                 onClick={() => setShowSettings(false)}
               >
                 ✕
               </button>
             </div>
-            
+
             <div className="settings-body">
               {/* 左侧导航栏 */}
               <div className="settings-sidebar">
                 <div className="settings-nav">
-                  <button 
+                  <button
                     className={`nav-item ${settingsTab === 'system' ? 'active' : ''}`}
                     onClick={() => setSettingsTab('system')}
                   >
                     <span className="nav-icon">⚙️</span>
                     <span>系统设置</span>
                   </button>
-                  <button 
+                  <button
                     className={`nav-item ${settingsTab === 'account' ? 'active' : ''}`}
                     onClick={() => setSettingsTab('account')}
                   >
@@ -562,7 +562,7 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
                   </button>
                 </div>
               </div>
-              
+
               {/* 右侧内容区域 */}
               <div className="settings-content">
                 {settingsTab === 'system' && (
@@ -583,8 +583,8 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
                       </div>
                       <div className="setting-item">
                         <label>
-                          <input 
-                            type="checkbox" 
+                          <input
+                            type="checkbox"
                             checked={isDarkMode}
                             onChange={(e) => {
                               const newDarkMode = e.target.checked;
@@ -597,7 +597,7 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
                         </label>
                       </div>
                     </div>
-                    
+
                     <div className="settings-section">
                       <h3>语言设置</h3>
                       <div className="setting-item">
@@ -613,7 +613,7 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
                         />
                       </div>
                     </div>
-                    
+
                     <div className="settings-section">
                       <h3>通知设置</h3>
                       <div className="setting-item">
@@ -633,7 +633,7 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
                         <input type="time" defaultValue="09:00" />
                       </div>
                     </div>
-                    
+
                     <div className="settings-section">
                       <h3>数据管理</h3>
                       <div className="setting-item">
@@ -645,7 +645,7 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
                     </div>
                   </>
                 )}
-                
+
                 {settingsTab === 'account' && (
                   <>
                     <div className="settings-section">
@@ -671,7 +671,7 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
                         />
                       </div>
                     </div>
-                    
+
                     <div className="settings-section">
                       <h3>安全设置</h3>
                       <div className="setting-item">
@@ -684,7 +684,7 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
                         </label>
                       </div>
                     </div>
-                    
+
                     <div className="settings-section">
                       <h3>隐私设置</h3>
                       <div className="setting-item">
@@ -700,7 +700,7 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
                         </label>
                       </div>
                     </div>
-                    
+
                     <div className="settings-section">
                       <h3>账号管理</h3>
                       <div className="setting-item">
@@ -711,15 +711,15 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
                 )}
               </div>
             </div>
-            
+
             <div className="settings-footer">
-              <button 
+              <button
                 className="cancel-btn"
                 onClick={() => setShowSettings(false)}
               >
                 取消
               </button>
-              <button 
+              <button
                 className="save-btn"
                 onClick={() => {
                   console.log('保存设置（暂无效果）');
@@ -732,7 +732,7 @@ const Sidebar = ({ selectedSubject, onSubjectChange, currentView, onViewChange, 
           </div>
         </div>
       )}
-      
+
 
     </div>
   );

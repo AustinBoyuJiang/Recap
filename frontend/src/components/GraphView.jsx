@@ -36,7 +36,7 @@ const GraphView = ({ onClose, isArticleMode = false, articleData = null }) => {
     useEffect(() => {
         if (!isArticleMode) {
             // 建立WebSocket连接用于英语学习模式的实时更新
-            const ws = new WebSocket("wss://recap.austinjiang.com/ws/");
+            const ws = new WebSocket("wss://recap.apps.austinjiang.com/ws/");
             
             ws.onmessage = (event) => {
                 const data = JSON.parse(event.data);
@@ -71,7 +71,7 @@ const GraphView = ({ onClose, isArticleMode = false, articleData = null }) => {
 
     const loadEnglishMemoryGraph = () => {
         // 首先调用query接口获取初始数据
-        fetch('https://recap.austinjiang.com/query/')
+        fetch('https://recap.apps.austinjiang.com/query/')
             .then(res => res.json())
             .then(data => {
                 if (data && data.nodes && Array.isArray(data.nodes)) {
@@ -89,7 +89,7 @@ const GraphView = ({ onClose, isArticleMode = false, articleData = null }) => {
         setIsLoadingArticleGraph(true);
         try {
             // 首先创建知识图谱
-            const createResponse = await fetch('https://recap.austinjiang.com/article/create-knowledge-graph', {
+            const createResponse = await fetch('https://recap.apps.austinjiang.com/article/create-knowledge-graph', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -131,7 +131,7 @@ const GraphView = ({ onClose, isArticleMode = false, articleData = null }) => {
 
         if (isArticleMode && articleData) {
             // 文章模式：更新文章记忆
-            fetch('https://recap.austinjiang.com/article/update-memory', {
+            fetch('https://recap.apps.austinjiang.com/article/update-memory', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
@@ -152,7 +152,7 @@ const GraphView = ({ onClose, isArticleMode = false, articleData = null }) => {
                 });
         } else {
             // 英语学习模式：更新英语记忆
-            fetch('https://recap.austinjiang.com/update/', {
+            fetch('https://recap.apps.austinjiang.com/update/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ sentence, grade: parseInt(grade) })
@@ -173,7 +173,7 @@ const GraphView = ({ onClose, isArticleMode = false, articleData = null }) => {
             loadArticleKnowledgeGraph();
         } else {
             // 英语学习模式：清除英语记忆
-            fetch('https://recap.austinjiang.com/init/', { method: 'POST' })
+            fetch('https://recap.apps.austinjiang.com/init/', { method: 'POST' })
                 .catch(err => {
                     console.error('Clear error:', err);
                 });
