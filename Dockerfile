@@ -22,8 +22,5 @@ COPY backend/app ./app
 # 容器监听端口（和 CapRover “Container HTTP Port” 一致）
 EXPOSE 8000
 
-# 健康检查（可选，但推荐）
-HEALTHCHECK --interval=30s --timeout=3s --retries=5 CMD curl -fsS http://127.0.0.1:8000/ || exit 1
-
 # 启动命令
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
