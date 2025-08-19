@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR /app
 
 # 先装依赖（利用缓存）
-COPY requirements.txt .
+COPY backend/requirements.txt .
 RUN pip install -r requirements.txt
 
 # 拷贝代码
