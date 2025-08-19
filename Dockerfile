@@ -17,7 +17,7 @@ COPY backend/requirements.txt .
 RUN pip install -r requirements.txt
 
 # 拷贝代码
-COPY backend/app ./app
+COPY backend/app /app
 
 # 容器监听端口（和 CapRover “Container HTTP Port” 一致）
 EXPOSE 8000
